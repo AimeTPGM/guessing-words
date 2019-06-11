@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from './components/shared/NavBar'
 import Display from './components/helper/Display'
+import update from 'immutability-helper'
 
 import './App.css'
 class App extends Component {
@@ -8,7 +9,7 @@ class App extends Component {
   state = {
     currentPage:"Home",
     menu: ["Home", "Start", "Reset"],
-    words: "",
+    words: [],
     time: 0,
     teamName: "default"
   }
@@ -24,11 +25,21 @@ class App extends Component {
 
   addWords = (newWords) => {
     if(newWords !== null){
-      this.setState({
-        ...this,words: newWords
+      console.log("You have input "+newWords.length+" words")
+      newWords.map((singleWord) => {
+        this.setState( prevState => ({
+          words: [...prevState.words,{id: this.prevState.words.length, wording: singleWord, correct: false}]
+        }))
       })
-    }
-    console.log("This is the current words in main state "+this.words)
+
+    }    
+    console.log("This is the current words in main state "+this.state.words)
+  }
+
+  correctWord = (wordId) => {
+    this.setState({
+      words: update(this.state.words,{[wordId]: {correct: {$set: true}}})
+    })
   }
 
   getWords = () => {
@@ -58,7 +69,7 @@ class App extends Component {
           <NavBar menu={this.state.menu} changePage={this.changePage}/>
         </ul>
         <br />
-        <Display page={this.state.currentPage} addWords={this.addWords} addTime={this.addTime} addTeamName={this.addTeamName} time={this.state.time} team={this.state.teamName}  words={this.state.words}/>
+        <Display page={this.state.currentPage} addWords={this.addWords} addTime={this.addTime} addTeamName={this.addTeamName} time={this.state.time} team={this.state.teamName}  words={this.state.words} correctWord={this.correctWord}/>
       </div>
     )
   }

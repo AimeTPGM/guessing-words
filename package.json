@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "arrow-keys-react": "^1.0.6",
+    "immutability-helper": "^3.0.0",
     "react": "^16.8.6",
     "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.6",
