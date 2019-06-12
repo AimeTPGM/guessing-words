@@ -28,7 +28,7 @@ class App extends Component {
       console.log("You have input "+newWords.length+" words")
       newWords.map((singleWord) => {
         this.setState( prevState => ({
-          words: [...prevState.words,{id: this.prevState.words.length, wording: singleWord, correct: false}]
+          words: [...prevState.words,{wordId: prevState.words.length, wording: singleWord, correct: false}]
         }))
       })
 

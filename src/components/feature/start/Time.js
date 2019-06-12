@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import Countdown from 'react-countdown-now';
 
 class Time extends Component {
 
-    startTimer = (e) => {
+    timeIt() {
         this.myInterval = setInterval(() => {
             this.setState(prevState => ({
                 count: prevState.count-1
@@ -11,12 +10,17 @@ class Time extends Component {
             if(this.state.count === 0){
                 console.log("this counter is 0")
                 clearInterval(this.myInterval)
+                this.props.setGameStart()
             }
         },1000)
     }
+
+    startTimer = () => {
+        this.props.setGameStart()
+        this.timeIt()
+    }
     state = {
-        count: parseInt(this.props.time),
-        startCount: false
+        count: parseInt(this.props.time)
     }
 
     componentDidMount = () => {
