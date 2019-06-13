@@ -16,8 +16,10 @@ class Time extends Component {
     }
 
     startTimer = () => {
-        this.props.setGameStart()
-        this.timeIt()
+        if(this.state.count > 0){
+            this.props.setGameStart()
+            this.timeIt()
+        }
     }
     state = {
         count: parseInt(this.props.time)

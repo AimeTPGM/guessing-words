@@ -75,7 +75,7 @@ class Start extends Component {
         return (
             <div>
                 <h1>Team : {this.props.team}</h1>
-                <Time time={this.props.time} setGameStart={this.setGameStart}/>
+                <Time time={this.props.time} setGameStart={this.setGameStart} gameStart={this.state.gameStart}/>
                 <Words words={this.state.showWords} nextWord={this.nextWord} wordsNumber={this.state.wordsNumber} gameStart={this.state.gameStart}/>
                 <h1>Score: {this.state.score}</h1>
             </div>
